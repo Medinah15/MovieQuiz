@@ -104,17 +104,27 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rZN-eO-OEV">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black "/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eU9-HL-IsQ" secondAttribute="bottom" id="Ajr-YX-vGc"/>
                             <constraint firstItem="eU9-HL-IsQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="I7S-Jp-555"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LGb-CQ-JpV"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ojh-BM-wnq"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZfC-Og-dAj"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zk3-e3-HNU"/>
                             <constraint firstItem="eU9-HL-IsQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="aq9-R5-1J2"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gJg-s6-Z2a"/>
+                            <constraint firstItem="rZN-eO-OEV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="up4-Gc-fWF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eU9-HL-IsQ" secondAttribute="trailing" constant="20" id="wbv-V2-dqU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="rZN-eO-OEV" id="9ol-0f-GIO"/>
                         <outlet property="counterLabel" destination="zcq-g9-YY6" id="Xj3-fq-ASM"/>
                         <outlet property="imageView" destination="ydz-RV-HNv" id="YFP-k0-TkH"/>
                         <outlet property="textLabel" destination="9f5-tW-1jo" id="jaI-CC-DLL"/>
@@ -122,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.072463768115945" y="55.580357142857139"/>
+            <point key="canvasLocation" x="-56.25" y="54.929577464788736"/>
         </scene>
     </scenes>
     <resources>
