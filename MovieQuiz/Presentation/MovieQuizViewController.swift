@@ -167,6 +167,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func show(quiz step: QuizStepViewModel) {
+        imageView.layer.borderColor = UIColor.clear.cgColor
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
