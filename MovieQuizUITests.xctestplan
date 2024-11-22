@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "BE0E5C6B-E375-4885-A3FC-9539CC32FCCA",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MovieQuiz.xcodeproj",
+        "identifier" : "8B8BF7FD2CEF7D0000224EF1",
+        "name" : "MovieQuizTests"
+      }
+    }
+  ],
+  "version" : 1
+}
