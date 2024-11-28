@@ -61,7 +61,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         counterLabel.text = step.questionNumber
     }
     
-    private func show(quiz result: QuizResultsViewModel) {
+    func show(quiz result: QuizResultsViewModel) {
         var message = result.text
         if let statisticService = statisticService {
             statisticService.store(correct: correctAnswers, total: presenter.questionsAmount)
@@ -105,9 +105,11 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let self = self else { return }
-                self.showNextQuestionOrResults()
-            }
+                       guard let self = self else { return }
+                       self.presenter.correctAnswers = self.correctAnswers
+                       self.presenter.questionFactory = self.questionFactory
+                       self.presenter.showNextQuestionOrResults()
+                   }
         }
         
         private func showNextQuestionOrResults() {
