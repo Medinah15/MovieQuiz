@@ -8,6 +8,7 @@
 import UIKit
 
 final class MovieQuizPresenter: QuestionFactoryDelegate{
+    private let statisticService: StatisticService!
     let questionsAmount: Int = 10
     private var currentQuestionIndex: Int = 0
     var currentQuestion: QuizQuestion?
@@ -17,10 +18,30 @@ final class MovieQuizPresenter: QuestionFactoryDelegate{
     
     init(viewController: MovieQuizViewController) {
             self.viewController = viewController
+        
+        statisticService = StatisticServiceImplementation()
             
             questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
             questionFactory?.loadData()
             viewController.showLoadingIndicator()
+        }
+    
+    func makeResultsMessage() -> String {
+            statisticService.store(correct: correctAnswers, total: questionsAmount)
+            
+            let bestGame = statisticService.bestGame
+            
+            let totalPlaysCountLine = "Количество сыгранных квизов: \(statisticService.gamesCount)"
+            let currentGameResultLine = "Ваш результат: \(correctAnswers)\\\(questionsAmount)"
+            let bestGameInfoLine = "Рекорд: \(bestGame.correct)\\\(bestGame.total)"
+            + " (\(bestGame.date.dateTimeString))"
+            let averageAccuracyLine = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
+            
+            let resultMessage = [
+                currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine
+            ].joined(separator: "\n")
+            
+            return resultMessage
         }
     
     // MARK: - QuestionFactoryDelegate

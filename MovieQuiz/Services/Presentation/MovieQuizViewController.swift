@@ -6,7 +6,7 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
-    private var statisticService: StatisticService?
+   
     private var presenter: MovieQuizPresenter!
     private var currentQuestion: QuizQuestion?
     
@@ -19,7 +19,7 @@ final class MovieQuizViewController: UIViewController {
         
         presenter = MovieQuizPresenter(viewController: self)
         imageView.layer.cornerRadius = 20
-        statisticService = StatisticServiceImplementation()
+       
     }
     
     
@@ -42,13 +42,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     func show(quiz result: QuizResultsViewModel) {
-        var message = result.text
-        if let statisticService = statisticService {
-            statisticService.store(correct: presenter.correctAnswers, total: presenter.questionsAmount)
-            let bestGame = statisticService.bestGame
-            
-            let totalPlaysCountLine = "Количество сыгранных квизов: \(statisticService.gamesCount)"
-            let currentGameResultLine = "Ваш результат: \(presenter.correctAnswers)\\\(presenter.questionsAmount)"
+        let message = presenter.makeResultsMessage()
             
             let alert = UIAlertController(
                         title: result.title,
@@ -57,26 +51,15 @@ final class MovieQuizViewController: UIViewController {
             
             let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in
                 guard let self = self else { return }
-                self.presenter.restartGame()
-                let bestGameInfoLine = "Рекорд: \(bestGame.correct)\\\(bestGame.total)"
-                + " (\(bestGame.date.dateTimeString))"
-                let averageAccuracyLine = "Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
-                
-                let resultMessage = [
-                    currentGameResultLine, totalPlaysCountLine, bestGameInfoLine, averageAccuracyLine
-                ].joined(separator: "\n")
-                
-                message = resultMessage
-            }
-            let model = AlertModel(title: result.title, message: message, buttonText: result.buttonText) { [weak self] in
-                guard let self = self else { return }
                 
                 self.presenter.restartGame()
             }
             
-            alertPresenter.show(in: self, model: model)
+            alert.addAction(action)
+                    
+            self.present(alert, animated: true, completion: nil)
         }
-    }
+    
         
         func showAnswerResult(isCorrect: Bool) {
             presenter.didAnswer(isCorrectAnswer: isCorrect)
