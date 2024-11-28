@@ -46,11 +46,16 @@ final class MovieQuizPresenter {
         }
     }
     
+    func didAnswer(isCorrectAnswer: Bool) {
+         correctAnswers += 1 
+        
+    }
+    
     func isLastQuestion() -> Bool {
         currentQuestionIndex == questionsAmount - 1
     }
     
-    func resetQuestionIndex() {
+    func restartGame() {
         currentQuestionIndex = 0
     }
     
