@@ -6,11 +6,10 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
+    
    
     private var presenter: MovieQuizPresenter!
-    private var currentQuestion: QuizQuestion?
     
-    private var alertPresenter = AlertPresenter()
     
     // MARK: - Lifecycle
     
@@ -60,41 +59,18 @@ final class MovieQuizViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     
-        
-        func showAnswerResult(isCorrect: Bool) {
-            presenter.didAnswer(isCorrectAnswer: isCorrect)
-            
-            
+    func highlightImageBorder(isCorrectAnswer: Bool) {
             imageView.layer.masksToBounds = true
             imageView.layer.borderWidth = 8
-            imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                       guard let self = self else { return }
-                       self.presenter.showNextQuestionOrResults()
-                   }
+            imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         }
+        
+        
     
     func hideLoadingIndicator() {
            activityIndicator.isHidden = true
        }
        
-        
-        private func showNextQuestionOrResults() {
-            if presenter.isLastQuestion() {
-                let text = "Вы ответили на \(presenter.correctAnswers) из 10, попробуйте еще раз!"
-                
-                let viewModel = QuizResultsViewModel(
-                    title: "Этот раунд окончен!",
-                    text: text,
-                    buttonText: "Сыграть ещё раз")
-                show(quiz: viewModel)
-            } else {
-                presenter.switchToNextQuestion()
-                self.presenter.restartGame()
-            }
-        }
-        
          func showLoadingIndicator() {
             activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
             activityIndicator.startAnimating() // включаем анимацию
