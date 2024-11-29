@@ -21,14 +21,14 @@ class MovieQuizUITests: XCTestCase {
         // то следующие тесты запускаться не будут; и правда, зачем ждать?
         continueAfterFailure = false
     }
-   /* override func tearDownWithError() throws {
+    override func tearDownWithError() throws {
         try super.tearDownWithError()
         
         app.terminate()
         app = nil
         
        
-    }*/
+    }
     
     func testYesButton() {
         sleep(3)

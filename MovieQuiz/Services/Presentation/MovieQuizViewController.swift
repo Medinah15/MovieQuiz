@@ -1,11 +1,12 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet var yesButton: UIButton!
+    @IBOutlet var noButton: UIButton!
     
    
     private var presenter: MovieQuizPresenter!
@@ -20,7 +21,6 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.cornerRadius = 20
        
     }
-    
     
     // MARK: - Actions
     
@@ -64,20 +64,18 @@ final class MovieQuizViewController: UIViewController {
             imageView.layer.borderWidth = 8
             imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         }
-        
-        
     
+    func showLoadingIndicator() {
+       activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
+       activityIndicator.startAnimating() // включаем анимацию
+   }
+        
     func hideLoadingIndicator() {
            activityIndicator.isHidden = true
        }
        
-         func showLoadingIndicator() {
-            activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
-            activityIndicator.startAnimating() // включаем анимацию
-        }
-        
         func showNetworkError(message: String) {
-            activityIndicator.isHidden = true // скрываем индикатор загрузки
+            hideLoadingIndicator()
             
             let alert = UIAlertController(
                 title: "Ошибка",
