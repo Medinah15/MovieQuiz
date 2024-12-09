@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 // для состояния "Вопрос показан"
 struct QuizStepViewModel {
     let image: UIImage

@@ -7,10 +7,8 @@
 
 import UIKit
 
-
-
 final class MovieQuizPresenter: QuestionFactoryDelegate{
-    private let statisticService: StatisticService!
+    private let statisticService: StatisticService
     private let questionsAmount: Int = 10
     private var currentQuestionIndex: Int = 0
     private var currentQuestion: QuizQuestion?
@@ -80,7 +78,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate{
         )
     }
     
-    
     func yesButtonClicked() {
         didAnswer(isYes: true)
     }
@@ -147,24 +144,24 @@ final class MovieQuizPresenter: QuestionFactoryDelegate{
 }
 
 
-       
 
-    
-    
-   
-    
-    
-    
-    
-  
-    
-   
-    
-    
-    
-    
-    
-    
-    
-   
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
