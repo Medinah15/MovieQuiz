@@ -20,7 +20,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         self.alertPresenter = alertPresenter
         presenter = MovieQuizPresenter(viewController: self)
         imageView.layer.cornerRadius = 20
-        
     }
     
     // MARK: - Actions
@@ -40,7 +39,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
     }
-    
     func show(quiz result: QuizResultsViewModel) {
         let message = presenter.makeResultsMessage()
         
